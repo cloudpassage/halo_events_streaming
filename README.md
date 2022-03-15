@@ -1,25 +1,20 @@
 # HALO Events Streaming v1.0
 
-### Requirements
+### About the tool
+HALO Events Streaming tool retrieves Halo events within a specific user defined time range into a local JSON file format.
 
-This tool requires the following Python packages:
-* cloudpassage
-* python-dateutil
-* pytz
+* In the examples below, we are trying to retrieve events starting on March 1st, 2022 and ending by March 15th, 2022.  (Halo
+   only retains events for 90 days).
 
-Install the requirements the easy way with `pip install -r requirements.txt`
-
-### Intro - Quick Start
-The HALO Events Streaming will append Halo events to a file in JSON format.
-(in this example, `/var/log/halo-events.json`)
-* In this scenario, we need to retrieve events starting on March 1st, 2022 (Halo
-   only retains events for 90 days, so this date is just used as an example).
-
-First, we check out this repository:
+First, we check out halo_events_streaming repository into any location from your choice (i.e., /opt/cloudpassage):
 
 * `mkdir -p /opt/cloudpassage`
 * `cd /opt/cloudpassage`
-* `git clone https://github.com/cloudpassage/halo_events_streaming`
+* `git clone https://github.com/cloudpassage/halo_events_streaming.git`
+
+Next, install the required python packages:
+* `cd halo_events_streaming`
+* `pip install -r requirements.txt`
 
 Next, configure Halo authentication information for the tool:
 
@@ -32,7 +27,7 @@ API key's secret.
 
 Next, run the Halo Events Streaming:
 
-`python halo_events.py --auth=/opt/cloudpassage/halo_events_streaming/configs/halo.auth --starting=2022-03-01 --ending=2022-03-15 --configdir=/opt/cloudpassage/halo_events_streaming/configs --event_type=fim_target_integrity_changed --jsonfile=/var/log/halo-events.json`
+`py halo_events.py --auth=/opt/cloudpassage/halo_events_streaming/configs/halo.auth --starting=2022-03-01 --ending=2022-03-15 --configdir=/opt/cloudpassage/halo_events_streaming/configs --event_type=fim_target_integrity_changed --jsonfile=/var/log/halo-events.json`
 
 Monitor the `/var/log/halo-events.json` file to see events from your Halo account.
 
@@ -41,28 +36,26 @@ Monitor the `/var/log/halo-events.json` file to see events from your Halo accoun
 
 __CLI Options:__
 ```
-usage: halo_events.py [-h] [--starting STARTING] [--ending ENDING] --auth AUTH
-                     [--batchsize BATCHSIZE]
-                     [--configdir CONFIGDIR] [--jsonfile JSONFILE]
-                     [--event_type EVENT_TYPE]
+usage: halo_events.py   [-h] 
+                        [--starting STARTING] 
+                        [--ending ENDING] 
+                        [--auth AUTH]
+                        [--batchsize BATCHSIZE]
+                        [--configdir CONFIGDIR] 
+                        [--jsonfile JSONFILE]
+                        [--event_type EVENT_TYPE]
 
 HALO Events Streaming
 
 optional arguments:
   -h, --help            show this help message and exit
   --starting STARTING   Specify start of event time range in ISO-8601 format
-  --ending ENDING   Specify end of event time range in ISO-8601 format
-  --auth AUTH           Specify a file containing CloudPassage Halo API keys -
-                        Key ID and Key secret pairs (up to 5)
-  --batchsize BATCHSIZE
-                        Specify a limit for page numbers, after which we use
-                        since
-  --configdir CONFIGDIR
-                        Specify directory for configration files (saved
-                        timestamps)
-  --jsonfile JSONFILE   Write events in raw JSON format to file with given
-                        filename
-  --event_type           Filter retrieved events based on event type (i.e. --eventtype=lids_rule_failed,sca_rule_failed)
+  --ending ENDING       Specify end of event time range in ISO-8601 format
+  --auth AUTH           Specify a file containing CloudPassage Halo API keys - Key ID and Key secret pairs
+  --batchsize BATCHSIZE Specify a limit for page numbers, after which we use since
+  --configdir CONFIGDIR Specify directory for configration files (saved timestamps)
+  --jsonfile JSONFILE   Write events in raw JSON format to file with given filename
+  --event_type          Filter retrieved events based on event type (i.e. --event_type=lids_rule_failed,sca_rule_failed)
 ```
 
 ### Halo Events Streaming on Linux
