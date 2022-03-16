@@ -1,6 +1,5 @@
 """Halo Events Streaming settings"""
 import datetime
-
 import pytz
 
 
@@ -27,4 +26,5 @@ def event_type():
 def ending_date():
     """get current datetime"""
     current_datetime = datetime.datetime.utcnow().replace(tzinfo=pytz.utc)
-    return current_datetime
+    modified_end_date = current_datetime + datetime.timedelta(days=1)
+    return modified_end_date.date()

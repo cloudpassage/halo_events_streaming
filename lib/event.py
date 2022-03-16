@@ -169,8 +169,7 @@ class Event(object):
         end_date = self.initial_date()
         end_range_date = self.args['ending']
         event_type = self.args["event_type"]
-        initial_event_id = self.latest_event("1", "", "", "1", event_type)["events"][0]["id"]
-        print("initial_event_id: %s" % initial_event_id)
+        initial_event_id = self.latest_event("1", "", end_range_date, "1", event_type)["events"][0]["id"]
         self.check_config_exists()
         while self.event_id_exist:
             batched = self.batch(end_date, end_range_date, event_type)

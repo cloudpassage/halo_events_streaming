@@ -7,6 +7,7 @@ from lib.jsonkv import FormatJson
 import lib.settings as settings
 import sys
 import importlib
+import datetime
 
 importlib.reload(sys)
 
@@ -81,8 +82,10 @@ class Utility(object):
     def check_ending(self):
         """determine ending date"""
         if self.options["ending"]:
-            validate.ending(self.options["ending"], self.options["ending"])
-            return self.options["ending"]
+            validate.ending(self.options["starting"], self.options["ending"])
+            provided_date = datetime.datetime.strptime(self.options["ending"], "%Y-%m-%d")
+            modified_end_date = provided_date + datetime.timedelta(days=1)
+            return modified_end_date.date()
         else:
             return settings.ending_date()
 
@@ -123,3 +126,4 @@ class Utility(object):
         self.options["ending"] = self.check_ending()
         self.options["event_type"] = self.parse_event_type()
         return self.options
+
