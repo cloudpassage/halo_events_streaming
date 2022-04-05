@@ -53,9 +53,9 @@ class Event(object):
         session = self.create_halo_session_object()
         api = cloudpassage.HttpHelper(session)
         if event_type in (None, ''):
-            url = "/v1/events?per_page=%s&page=%s&since=%s&until=%s" % (per_page, page, start_date, end_range_date)
+            url = "/v1/events?sort_by=created_at.asc&per_page=%s&page=%s&since=%s&until=%s" % (per_page, page, start_date, end_range_date)
         else:
-            url = "/v1/events?per_page=%s&page=%s&since=%s&until=%s&type=%s" % (per_page, page, start_date, end_range_date, event_type)
+            url = "/v1/events?sort_by=created_at.asc&per_page=%s&page=%s&since=%s&until=%s&type=%s" % (per_page, page, start_date, end_range_date, event_type)
         result = api.get(url)
         return result
 
