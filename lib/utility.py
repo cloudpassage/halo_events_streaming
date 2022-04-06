@@ -117,6 +117,17 @@ class Utility(object):
             return settings.event_type()
         return self.options['event_type']
 
+    def sort_events_desc(self):
+        json_file_name = self.options["jsonfile"]
+        desc_json_file_name = os.path.splitext(json_file_name)[0]+"-desc.json"
+        with open(json_file_name, 'r') as input_file:
+            data = input_file.readlines()
+        input_file.close()
+        with open(desc_json_file_name, 'a') as output_file:
+            for event in reversed(data):
+                output_file.write(event)
+        output_file.close()
+
     def updated_hash(self):
         """updated hash"""
         self.options["api_keys"] = self.parse_auth()

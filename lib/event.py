@@ -185,3 +185,6 @@ class Event(object):
             if batched:
                 self.utility.output_events(batched)
                 print("Wrote: %s to %s" % (start_date, end_date))
+
+    def sort_events(self):
+        self.utility.sort_events_desc()

@@ -36,7 +36,7 @@ python halo_events.py --auth=halo.auth -- --starting=YYYY-MM-DD --ending=YYYY-MM
 
 `python halo_events.py --auth=/opt/cloudpassage/halo_events_streaming/configs/halo.auth --starting=2022-03-14 --ending=2022-03-16 --configdir=/opt/cloudpassage/halo_events_streaming/configs --jsonfile=/var/log/halo-events.json`
 
-* Monitor the json file `/var/log/halo-events.json` to see events from your Halo account.
+* Monitor the json files `/var/log/halo-events.json` and `/var/log/halo-events-desc.json` to see events from your Halo account.
 * You can filter HALO events by setting event type to any of the supported event types illustrated in [EVENT TYPES](SUPPORTED_EVENT_TYPES.md) document.
 
 ### Implementation Notes:

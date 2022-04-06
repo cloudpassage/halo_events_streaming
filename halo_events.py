@@ -1,4 +1,5 @@
 """HALO Events Streaming"""
+from lib.settings import event_type
 from lib.utility import Utility
 from lib.event import Event
 
@@ -11,6 +12,7 @@ def main():
         for i in args["api_keys"]:
             event = Event(i['key_id'], i['secret_key'])
             event.retrieve_events()
+            event.sort_events()
 
 
 if __name__ == "__main__":
